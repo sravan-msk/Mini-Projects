@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModeKeeper</title>
+    <style>
+        body.dark {
+            background-color: black;
+            color: white;
+            transition: 1s ease;
+        }
+
+        body {
+            background-color: white;
+            color: black;
+            transition: 1s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore saepe impedit commodi vel nisi quas quos dicta
+        dignissimos iusto dolorem minus earum odit veritatis excepturi, animi accusantium nam alias. Culpa.</p>
+    <button id="btn">Mode</button>
+
+    <script>
+        const btn = document.getElementById("btn");
+        const body = document.body;
+
+        let theme = localStorage.getItem('theme');
+
+        if (theme === 'dark') {
+            body.classList.add('dark');
+        } else {
+            body.classList.add('light');
+        }
+
+        btn.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        })
+
+    </script>
+</body>
+
+</html>
