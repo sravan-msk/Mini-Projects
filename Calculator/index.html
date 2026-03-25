@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-area">
+            <input type="text" readonly id="display">
+        </div>
+        <div class="buttons-area">
+            <button onclick="cleaarAll()">AC</button>
+            <button onclick="clearOne()">DEL</button>
+            <button onclick="append('%')">%</button>
+            <button onclick="append('/')">/</button>
+            <button onclick="append('7')">7</button>
+            <button onclick="append('8')">8</button>
+            <button onclick="append('9')">9</button>
+            <button onclick="append('*')">*</button>
+            <button onclick="append('4')">4</button>
+            <button onclick="append('5')">5</button>
+            <button onclick="append('6')">6</button>
+            <button onclick="append('-')">-</button>
+            <button onclick="append('1')">1</button>
+            <button onclick="append('2')">2</button>
+            <button onclick="append('3')">3</button>
+            <button onclick="append('+')">+</button>
+            <button onclick="append('0')">0</button>
+            <button onclick="append('.')">.</button>
+            <button onclick="cal()">=</button>
+        </div>
+    </div>
+
+
+    <script>
+        const display = document.getElementById('display');
+
+        function append(input) {
+            display.value += input;
+        }
+        function cleaarAll() {
+            display.value = "";
+        }
+        function clearOne() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        function cal() {
+            try {
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = "Eroor";
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            const allowedKeys = [
+                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+                "+", "-", "*", "/", "%"
+            ];
+            if (allowedKeys.includes(e.key)) {
+                append(e.key);
+            }
+            if (e.key === "Backspace") {
+                clearOne();
+            }
+            if (e.key === "Enter") {
+                cal();
+            }
+        })
+    </script>
+</body>
+
+</html>
