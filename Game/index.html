@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <style>
+        .container {
+            width: 180px;
+            flex-wrap: wrap;
+            display: flex;
+        }
+
+        .btns {
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="winner-msg">
+        <div id="msg">Congratus</div>
+    </div>
+    <div class="container">
+        <button class="btns"></button>
+        <button class="btns"></button>
+        <button class="btns"></button>
+        <button class="btns"></button>
+        <button class="btns"></button>
+        <button class="btns"></button>
+        <button class="btns"></button>
+        <button class="btns"></button>
+        <button class="btns"></button>
+    </div>
+    <button id="reset">Reset Game</button>
+
+    <script>
+        const btns = document.querySelectorAll('.btns');
+        const msg = document.getElementById('msg');
+        const reset = document.getElementById('reset');
+
+        let trunX = true;
+        const winningPatterns = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [6, 4, 2],
+        ];
+
+        btns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (trunX) {
+                    btn.textContent = "X";
+                    trunX = false;
+                } else {
+                    btn.textContent = "O"
+                    trunX = true;
+                };
+                checkWinning();
+            });
+        })
+
+        //enable buttons
+        const enableBtn = () => {
+            for (let btn of btns) {
+                btn.disabled = false;
+                btn.textContent = "";
+            }
+        }
+
+        //disable buttons
+        const disableBtn = () => {
+            for (let bts of btns) {
+                bts.disabled = true;
+            }
+        }
+
+        //Winner msg 
+        const winnerMsg = (winner) => {
+            msg.textContent = `Congratus ${winner}`;
+            disableBtn();
+        }
+
+        function checkWinning() {
+            for (let patterns of winningPatterns) {
+                let val0 = btns[patterns[0]].innerText;
+                let val1 = btns[patterns[1]].innerText;
+                let val2 = btns[patterns[2]].innerText;
+
+                if (val0 != "" && val1 != "" && val2 != "") {
+                    if (val0 === val1 && val1 === val2) {
+                        winnerMsg(val0);
+                    }
+                }
+            }
+
+        }
+
+        reset.addEventListener('click', enableBtn);
+    </script>
+</body>
+
+</html>
