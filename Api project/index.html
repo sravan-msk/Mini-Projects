@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not App</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .box {
+            height: 250px;
+            width: 200px;
+            border: 1px solid black;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        button {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-weight: 700;
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="getData()">Click Here!</button>
+    <div class="box"></div>
+    <script>
+        let url = "https://jsonplaceholder.typicode.com/comments";
+        let box = document.querySelector(".box");
+
+        async function getData() {
+
+            let random = Math.round(Math.random() * 500);
+            const data = await fetch(url);
+            const response = await data.json();
+
+            box.innerText = `Body : ${response[random].body}`
+
+        }
+
+    </script>
+</body>
+
+</html>
