@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Password Generator</h2>
+        <div class="display-container">
+            <input type="text" id="display" readonly>
+        </div>
+        <div class="check-container">
+            <label for="number">
+                <input type="checkbox" name="" id="number">
+                <span>Contains numbers.</span>
+            </label>
+            <label for="lowercase">
+                <input type="checkbox" name="" id="lowercase">
+                <span>Contains lowercase letters.</span>
+            </label>
+            <label for="uppercase">
+                <input type="checkbox" name="" id="uppercase">
+                <span>Contains uppercase letters.</span>
+            </label>
+            <label for="symbols">
+                <input type="checkbox" name="" id="symbols">
+                <span>Contains specail symbols.</span>
+            </label>
+            <button id="btn">Generate password</button>
+        </div>
+    </div>
+    <script>
+
+        const numbers = document.getElementById("number");
+        const lowerCase = document.getElementById("lowercase");
+        const upperCase = document.getElementById("uppercase");
+        const symbols = document.getElementById("symbols");
+
+        const btn = document.getElementById("btn");
+        const display = document.getElementById("display");
+
+        function passwordGen(numbers, lowerCase, upperCase, symbols) {
+            const includeNumbers = "0123456789";
+            const includesLoewrCase = "abcdefghijklmnopqrstuvwxyz";
+            const includeUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const includeSymbols = "`!@#$%^&*()-+=_.,/?";
+
+            let allowChar = "";
+            allowChar += numbers ? includeNumbers : "";
+            allowChar += lowerCase ? includesLoewrCase : "";
+            allowChar += upperCase ? includeUpperCase : "";
+            allowChar += symbols ? includeSymbols : "";
+            let password = "";
+
+            let n = 9;
+            if (allowChar == 0) {
+                console.log("Selecte any one thinf");
+
+            }
+            for (let i = 0; i < n; i++) {
+                let random = Math.floor(Math.random() * allowChar.length);
+                password += allowChar[random];
+            }
+            return password;
+        }
+
+
+        btn.addEventListener('click', () => {
+            let pswd = passwordGen(numbers.checked, lowerCase.checked, upperCase.checked, symbols.checked);
+            display.value = pswd;
+        })
+
+
+
+
+
+    </script>
+</body>
+
+</html>
