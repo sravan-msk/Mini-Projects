@@ -41,3 +41,6 @@ btn.addEventListener("click", () => {
   );
   display.value = pswd;
 });
+
+//add copy option
+//add progress bar to password length and password strength
