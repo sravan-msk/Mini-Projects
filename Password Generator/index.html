@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -14,6 +15,7 @@
         <div class="display-container">
             <input type="text" id="display" readonly>
         </div>
+        <div class="note"></div>
         <div class="check-container">
             <label for="number">
                 <input type="checkbox" name="" id="number">
@@ -31,55 +33,12 @@
                 <input type="checkbox" name="" id="symbols">
                 <span>Contains specail symbols.</span>
             </label>
-            <button id="btn">Generate password</button>
         </div>
+        <button id="btn">Generate password</button>
     </div>
-    <script>
+   
 
-        const numbers = document.getElementById("number");
-        const lowerCase = document.getElementById("lowercase");
-        const upperCase = document.getElementById("uppercase");
-        const symbols = document.getElementById("symbols");
-
-        const btn = document.getElementById("btn");
-        const display = document.getElementById("display");
-
-        function passwordGen(numbers, lowerCase, upperCase, symbols) {
-            const includeNumbers = "0123456789";
-            const includesLoewrCase = "abcdefghijklmnopqrstuvwxyz";
-            const includeUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            const includeSymbols = "`!@#$%^&*()-+=_.,/?";
-
-            let allowChar = "";
-            allowChar += numbers ? includeNumbers : "";
-            allowChar += lowerCase ? includesLoewrCase : "";
-            allowChar += upperCase ? includeUpperCase : "";
-            allowChar += symbols ? includeSymbols : "";
-            let password = "";
-
-            let n = 9;
-            if (allowChar == 0) {
-                console.log("Selecte any one thinf");
-
-            }
-            for (let i = 0; i < n; i++) {
-                let random = Math.floor(Math.random() * allowChar.length);
-                password += allowChar[random];
-            }
-            return password;
-        }
-
-
-        btn.addEventListener('click', () => {
-            let pswd = passwordGen(numbers.checked, lowerCase.checked, upperCase.checked, symbols.checked);
-            display.value = pswd;
-        })
-
-
-
-
-
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
